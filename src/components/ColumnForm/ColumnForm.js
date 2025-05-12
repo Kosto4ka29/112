@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
 import TextInput from '../TextInput/TextInput.js';
+import { addColumn } from '../../redux/creators.js';
 
 const ColumnForm = props => {
     const [title, setTitle] = useState('');
@@ -12,13 +13,7 @@ const ColumnForm = props => {
     e.preventDefault();
 
     if (title.trim() && icon.trim()) {
-      dispatch({
-        type: 'ADD_COLUMN',
-        payload: {
-          title,
-          icon,
-        },
-      });
+      dispatch(addColumn({ title, icon }));
 
       setTitle('');
       setIcon('');
@@ -32,7 +27,6 @@ const ColumnForm = props => {
                 <TextInput
   value={title}
   onChange={e => setTitle(e.target.value)}
-  placeholder="Title"
 />
             </label>
             <label>
@@ -40,7 +34,6 @@ const ColumnForm = props => {
                 <TextInput
   value={icon}
   onChange={e => setIcon(e.target.value)}
-  placeholder="Title"
 />
             </label>
             <Button>Add column</Button>

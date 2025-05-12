@@ -1,26 +1,11 @@
 import styles from './List.module.scss';
-import Column from '../Column/Column';
-import ColumnForm from '../ColumnForm/ColumnForm';
-import { useSelector, useDispatch } from 'react-redux';
-
+import Column from '../Column/Column.js';
+import ColumnForm from '../ColumnForm/ColumnForm.js';
+import { useSelector } from 'react-redux';
+import { getAllColumns } from '../../redux/selectors.js';
 
 const List = () => {
-  const columns = useSelector(state => state.columns);
-  const cards = useSelector(state => state.cards);
-  const dispatch = useDispatch();
-
-  // ✅ Funkcja dodająca kartę
-  const handleAddCard = (title, columnId) => {
-    dispatch({
-      type: 'ADD_CARD',
-      payload: { title, columnId },
-    });
-  };
-
-  const columnsWithCards = columns.map(column => ({
-    ...column,
-    cards: cards.filter(card => card.columnId === column.id)
-  }));
+  const columns = useSelector(getAllColumns);
 
   return (
     <div className={styles.list}>
@@ -29,11 +14,10 @@ const List = () => {
       </header>
       <p className={styles.description}>Interesting things I want to check out</p>
       <section className={styles.columns}>
-        {columnsWithCards.map(column =>
+        {columns.map(column =>
           <Column
             key={column.id}
             {...column}
-            addCard={handleAddCard}  
           />
         )}
       </section>

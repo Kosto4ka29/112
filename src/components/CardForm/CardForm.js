@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
 import TextInput from '../TextInput/TextInput.js';
+import { addCard } from '../../redux/creators.js';
 
 const CardForm = (props) => {
   const [title, setTitle] = useState('');
@@ -12,13 +13,7 @@ const CardForm = (props) => {
     e.preventDefault();
 
     if (title.trim()) {
-      dispatch({
-        type: 'ADD_CARD',
-        payload: {
-          title,
-          columnId: props.columnId,
-        },
-      });
+      dispatch(addCard({ title, columnId: props.columnId }));
 
       setTitle('');
     }
