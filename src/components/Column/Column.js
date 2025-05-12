@@ -2,11 +2,14 @@ import styles from './Column.module.scss';
 import Card from '../Card/Card.js';
 import CardForm from '../CardForm/CardForm.js';
 import { useSelector } from 'react-redux';
+import { useMemo } from 'react';
 
 const Column = (props) => {
-  const cards = useSelector(state =>
-    state.cards.filter(card => card.columnId === props.id)
-  );
+  const allCards = useSelector(state => state.cards);
+
+  const cards = useMemo(() => {
+    return allCards.filter(card => card.columnId === props.id);
+  }, [allCards, props.id]);
 
   return (
     <div className={styles.column}>
@@ -20,7 +23,8 @@ const Column = (props) => {
         ))}
       </ul>
 
-      <CardForm action={props.addCard} columnId={props.id} />
+      <CardForm columnId={props.id} />
+
     </div>
   );
 };

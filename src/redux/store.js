@@ -1,24 +1,35 @@
 import { createStore } from 'redux';
 import initialState from './initialState';
+import shortid from 'shortid';
 
 const reducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'ADD_CARD':
-        const newCard = {
-          id: Math.random().toString(36).substr(2, 9), // losowe ID
-          title: action.payload.title,
-          columnId: action.payload.columnId,
-        };
-        return {
-          ...state,
-          cards: [...state.cards, newCard],
-        };
-  
-      default:
-        return state;
-    }
-  };
-  
+  switch (action.type) {
+    case 'ADD_CARD':
+      const newCard = {
+        id: shortid(),
+        title: action.payload.title,
+        columnId: action.payload.columnId,
+      };
+      return {
+        ...state,
+        cards: [...state.cards, newCard],
+      };
+
+    case 'ADD_COLUMN':
+      const newColumn = {
+        id: shortid(),
+        title: action.payload.title,
+        icon: action.payload.icon,
+      };
+      return {
+        ...state,
+        columns: [...state.columns, newColumn],
+      };
+
+    default:
+      return state;
+  }
+};
 
 const store = createStore(
   reducer,
