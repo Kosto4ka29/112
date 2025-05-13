@@ -1,0 +1,47 @@
+.navBar {
+  background-color: #333;
+  color: white;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: #ccc;
+  }
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+
+  li {
+    a {
+      color: white;
+      text-decoration: none;
+
+      &.active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &:hover {
+        color: #ddd;
+      }
+    }
+  }
+}
