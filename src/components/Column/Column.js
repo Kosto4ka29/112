@@ -1,19 +1,13 @@
 import styles from './Column.module.scss';
+import React from 'react';
+
 import Card from '../Card/Card.js';
 import CardForm from '../CardForm/CardForm.js';
 import { useSelector } from 'react-redux';
 import { getFilteredCards } from '../../redux/selectors.js';
-import { useMemo } from 'react';
 
 const Column = (props) => {
-  // Wybieramy tylko potrzebne dane – NIE cały state
-  const cards = useSelector(state => state.cards);
-  const searchString = useSelector(state => state.searchString);
-
-  // ✅ Memoizacja przefiltrowanych kart
-  const filteredCards = useMemo(() => {
-    return getFilteredCards({ cards, searchString }, props.id);
-  }, [cards, searchString, props.id]);
+  const cards = useSelector(state => getFilteredCards(state, props.id));
 
   return (
     <div className={styles.column}>
@@ -22,7 +16,7 @@ const Column = (props) => {
       </h3>
 
       <ul className={styles.cards}>
-        {filteredCards.map(card => (
+        {cards.map(card => (
           <Card key={card.id} title={card.title} />
         ))}
       </ul>

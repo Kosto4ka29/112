@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './ColumnForm.module.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -5,7 +6,7 @@ import Button from '../Button/Button.js';
 import TextInput from '../TextInput/TextInput.js';
 import { addColumn } from '../../redux/creators.js';
 
-const ColumnForm = props => {
+const ColumnForm = ({ listId }) => {
     const [title, setTitle] = useState('');
     const [icon, setIcon] = useState('');
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ColumnForm = props => {
     e.preventDefault();
 
     if (title.trim() && icon.trim()) {
-      dispatch(addColumn({ title, icon }));
+      dispatch(addColumn({ title, icon, listId  }));
 
       setTitle('');
       setIcon('');

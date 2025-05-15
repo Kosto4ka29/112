@@ -12,3 +12,8 @@ export const updateSearchString = payload => ({
   type: 'UPDATE_SEARCHSTRING',
   payload,
 });
+
+export const addList = payload => ({ 
+  type: 'ADD_LIST', 
+  payload 
+});

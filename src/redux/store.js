@@ -21,6 +21,7 @@ const reducer = (state = initialState, action) => {
         id: shortid(),
         title: action.payload.title,
         icon: action.payload.icon,
+        listId: action.payload.listId,
       };
       return {
         ...state,
@@ -34,10 +35,23 @@ const reducer = (state = initialState, action) => {
         searchString: action.payload,
       };
     }
+      case 'ADD_LIST': {
+      const newList = {
+        id: shortid(),
+        title: action.payload.title,
+        description: action.payload.description,
+      };
+      return {
+        ...state,
+        lists: [...state.lists, newList],
+      };
+    }
 
     default:
       return state;
-  }
+  } 
+
+  
 };
 
 const store = createStore(

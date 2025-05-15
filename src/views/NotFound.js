@@ -1,3 +1,4 @@
+import React from 'react';
 import PageTitle from '../components/PageTitle/PageTitle.js';
 
 const NotFound = () => {

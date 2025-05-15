@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from '../components/PageTitle/PageTitle.module.scss';
 import PageTitle from '../components/PageTitle/PageTitle.js'; 
 
