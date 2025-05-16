@@ -22,3 +22,8 @@ export const toggleCardFavorite = cardId => ({
   type: 'TOGGLE_CARD_FAVORITE',
   payload: cardId,
 });
+
+export const removeCard = cardId => ({
+  type: 'REMOVE_CARD',
+  payload: cardId,
+});

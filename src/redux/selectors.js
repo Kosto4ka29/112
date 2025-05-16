@@ -33,7 +33,7 @@ export const getFilteredCards = createDeepEqualSelector(
   (cards, searchString, columnId) =>
     cards.filter(
       card =>
-        card.columnId === columnId &&
+        Number(card.columnId) === Number(columnId)  &&
         strContains(card.title, searchString)
     )
 );
