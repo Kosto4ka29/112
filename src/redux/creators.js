@@ -17,3 +17,8 @@ export const addList = payload => ({
   type: 'ADD_LIST', 
   payload 
 });
+
+export const toggleCardFavorite = cardId => ({
+  type: 'TOGGLE_CARD_FAVORITE',
+  payload: cardId,
+});

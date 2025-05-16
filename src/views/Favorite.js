@@ -1,14 +1,27 @@
 import React from 'react';
-import styles from '../components/PageTitle/PageTitle.module.scss';
-import PageTitle from '../components/PageTitle/PageTitle.js'; 
+import { useSelector } from 'react-redux';
+import { getFavoriteCards } from '../redux/selectors';
+import Card from '../components/Card/Card';
+import styles from '../components/Column/Column.module.scss'; // Reuse Column styles
+import PageTitle from '../components/PageTitle/PageTitle';
 
 const Favorite = () => {
+  const favoriteCards = useSelector(getFavoriteCards);
+
   return (
     <div>
       <PageTitle>Favorite</PageTitle>
-      <p className={styles.content}>
-        Lorem Ipsum. This is a simple favorite page in the app.
-      </p>
+      {favoriteCards.length === 0 ? (
+        <p className={styles.empty}>No favorite cards yet.</p>
+      ) : (
+        <section className={styles.column}>
+          <ul className={styles.cards}>
+            {favoriteCards.map(card => (
+              <Card key={card.id} {...card} />
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 };

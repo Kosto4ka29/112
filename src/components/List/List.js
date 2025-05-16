@@ -32,7 +32,7 @@ const List = () => {
           <Column key={column.id} {...column} />
         )}
       </section>
-      <ColumnForm listId={listId} />
+      <ColumnForm listId = {listId} />
     </div>
   );
 };

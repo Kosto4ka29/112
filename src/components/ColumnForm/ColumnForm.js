@@ -14,7 +14,7 @@ const ColumnForm = ({ listId }) => {
     e.preventDefault();
 
     if (title.trim() && icon.trim()) {
-      dispatch(addColumn({ title, icon, listId  }));
+      dispatch(addColumn({ title, icon, listId }));
 
       setTitle('');
       setIcon('');

@@ -1,6 +1,7 @@
 import { createSelectorCreator, defaultMemoize } from 'reselect';
 import isEqual from 'lodash/isEqual';
 import strContains from '../utils/strContains';
+import { createSelector } from 'reselect';
 
 // własna wersja createSelector z głęboką porównywarką
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, isEqual);
@@ -36,3 +37,12 @@ export const getFilteredCards = createDeepEqualSelector(
         strContains(card.title, searchString)
     )
 );
+
+
+
+export const getFavoriteCards = createSelector(
+  [getAllCards],
+  (cards) => cards.filter(card => card.isFavorite)
+);
+
+

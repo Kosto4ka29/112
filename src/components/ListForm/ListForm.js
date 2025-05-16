@@ -20,7 +20,6 @@ const ListForm = () => {
   };
 
   return (
-    
     <form onSubmit={handleSubmit} className={styles.listForm}>
       <label>
         Title:
